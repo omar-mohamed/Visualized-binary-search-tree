@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BST TREE</title>
+        <script src="jquery-1.5.2.min.js"></script>
+        <script src="JavaScript.js"></script>
+        <script type="application/javascript">
+
+            function onloadActions() {
+                var inputKeyVar = document.getElementById("inputKey");
+                inputKeyVar.focus();
+
+            }
+
+            var ipTree = new BST();
+            function insert() {
+                var inputKeyVar = document.getElementById("inputKey");
+                key = inputKeyVar.value;
+                value = document.getElementById("inputValue").value;
+                ipTree.insert(key, value);
+                inputKeyVar.value = "";
+                inputKeyVar.focus();
+            }
+            function Random() {
+
+                key = Math.floor((Math.random() * 400) + 1);
+                value = document.getElementById("inputValue").value;
+                ipTree.insert(key, value);
+                inputKeyVar.value = "";
+                inputKeyVar.focus();
+            }
+            function traverseTree() {
+                var result = "";
+                ipTree.traverse(function (key, value) {
+                    result += "\nThe value of " + key + " is " + value + ".";
+                    //draw();
+                });
+                alert(result);
+            }
+            function search() {
+                var result2 = document.getElementById("inputSearch");
+                searchKey = document.getElementById("inputSearch").value;
+                result2 += "\nSearching for " + searchKey + " results in: " + ipTree.search(searchKey);
+               
+                inputSearch.value = "";
+                inputSearch.focus();
+            }
+            function minimum() {
+                var result3 = "";
+                result3 += "\nMin is " + ipTree.min();
+               
+            }
+            function maximum() {
+                var result4 = "";
+                result4 += "\nMax is " + ipTree.max();
+               
+            }
+            function successor2() {
+                var result5 = "";
+                result5 += "\nThe successor of root is: " + ipTree.successor();
+                alert(result5);
+            }
+            function predeessor2() {
+                var result6 = "";
+                result6 += "\nThe predecessor of root is: " + ipTree.predecessor();
+                alert(result6);
+            }
+            function depth() {
+                var result = "";
+                result += ipTree.maxdepth();
+                alert("The depth of BST is : " + result);
+            }
+
+
+            function Delete() {
+                var deleteKeyVar = document.getElementById("deleteKey");
+                nodeKey = deleteKeyVar.value;
+                value = document.getElementById("inputValue").value;
+                
+
+                var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                ipTree.Delete(nodeKey);
+                
+                deleteKeyVar.value = "";
+                deleteKeyVar.focus();
+            }
+
+            function clearCanvas()
+            {
+                var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                ipTree = new BST();
+                
+            }
+
+
+        </script>
+    </head>
+    <body onload="onloadActions();" style="background-color:lightgoldenrodyellow;">
+        <canvas id="canvas" width="1300" height="540"></canvas>
+        <div style="text-align: center; background-color:lightseagreen; bottom:0px;">
+                key
+            <input id="inputKey" type="text" />
+                value
+            <input id="inputValue" type="text" />
+                <input type="button" value="Insert" onclick="insert();" />
+            <input type="button" value="Random" onclick="Random();" />
+                <br />
+                Search  Key
+            <input id="inputSearch" type="text" />
+                <input type="button" value="search" onclick="search();" />
+                <br />
+                Delete Node
+                <input id="deleteKey" type="text" />
+                <input type="button" value="Delete" onclick="Delete();" />
+                <br />
+
+                <input type="button" value="Traverse" onclick="traverseTree();" />
+                <input type="button" value="Minimum" onclick="minimum();" />
+                <input type="button" value="Maximum" onclick="maximum();" />
+                <input type="button" value="Depth" onclick="depth();" />
+                <input type="button" value="Successor" onclick="successor2();" />
+                <input type="button" value="Predecessor" onclick="predeessor2();" />
+                <input type="button" value="Clear All" onClick="clearCanvas()">
+        </div>
+
+
+    </body>
+</html>
+
+
